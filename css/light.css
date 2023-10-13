@@ -1,0 +1,365 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --theme: white;
+
+    --text-primary-color: black;
+    --text-secondary-color: gray;
+    --text-white: white;
+
+    --button-bg: rgba(0,0,0,0.05);
+    --button-bg-darker: rgba(0,0,0,0.08);
+
+    --work: rgba(0, 132, 255, 1);
+    --rest: rgba(236, 204, 0, 1);
+    --repeat: rgba(144, 0, 176, 1);
+    --duration: rgba(15, 135, 15, 1);
+
+    --work-lighter: rgba(0, 132, 255, 0.5);
+    --rest-lighter: rgba(236, 204, 0, 0.5);
+    --repeat-lighter: rgba(144, 0, 176, 0.5);
+    --duration-lighter: rgba(15, 135, 15, 0.5);
+}
+
+body {
+    background-color: var(--theme);
+    color: var(--text--primary-color);
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100dvh;
+}
+
+header {
+    height: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    justify-content: center;
+    align-items: center;
+}
+#app {
+   height: calc(100dvh - 3rem);
+}
+.left-nav svg {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.left-nav svg path {
+    fill: var(--work);
+    stroke: var(--work);
+    stroke-width: 1rem;
+}
+
+.left-nav {
+    padding-inline: 1rem 0;
+    cursor: pointer;
+}
+.page-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+#app > * {
+    animation: dropIn ease 1s;
+}
+
+@keyframes dropIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-1rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+#intervals-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    margin-inline: auto;
+    margin-block: 30px;
+    width: 80%;
+    gap: 1rem;
+}
+
+.interval, #add-interval {
+    background-color: var(--button-bg);
+    width: auto;
+    height: 25dvh;
+    border-radius: 1rem;
+    padding-inline: 2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.interval:hover, #add-interval:hover {
+    background-color: var(--button-bg-darker);
+}
+
+#add-interval:hover > svg {
+    color: var(--text-primary-color);
+}
+
+#add-interval svg {
+    width: 4rem;
+    height: 4rem;
+    font-weight: bold;
+    color: var(--text-secondary-color);
+}
+
+.interval-info {
+    margin-block: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    color: var(--text-secondary-color);
+}
+
+.interval svg {
+    width: 15px;
+    height: 15px;
+    stroke-width: 1rem;
+}
+
+.interval-work svg {
+    color: var(--work-lighter);
+}
+
+.interval-rest svg {
+    color: var(--rest-lighter);
+}
+
+.interval-repeat svg {
+    color: var(--repeat-lighter);
+}
+
+.interval-duration svg {
+    color: var(--duration-lighter);
+}
+
+.interval:hover > div .interval-info {
+    color: var(--text--primary-color);
+}
+
+.interval:hover > div .interval-work svg{
+    color: var(--work);
+}
+
+.interval:hover > div .interval-rest svg{
+    color: var(--rest);
+}
+
+.interval:hover > div .interval-repeat svg{
+    color: var(--repeat);
+}
+
+.interval:hover > div .interval-duration svg{
+    color: var(--duration);
+}
+
+#interval-creation {
+    width: 100%;
+    height: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.steps {
+    text-align: center;
+    padding: 1rem;
+}
+ 
+
+.time-picker {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.time-select {
+    display: inline-block;
+    position: relative;
+    padding-inline: 0.4rem;
+}
+
+#work-time-select {
+    border-bottom: 7px solid var(--work);
+}
+
+#rest-time-select {
+    border-bottom: 7px solid var(--rest);
+}
+
+#repeat-time-select {
+    border-bottom: 7px solid var(--repeat);
+}
+
+input[type=range][orient=vertical] {
+    -webkit-appearance: none;
+    background: blue;
+    border: solid 2px #82CFD0;
+    border-radius: 8px;
+    height: 3rem;
+    width: 2.5rem;
+    transform: rotate(270deg);
+    cursor: pointer;
+    opacity: 0;
+}
+    
+.input[type=range]::-webkit-slider-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    -webkit-appearance: none;
+    cursor: ew-resize;
+    background: #434343;
+}
+  
+.next-button {
+    margin-top: 1rem;
+    background-color: var(--work);
+    color: var(--text-white);
+    font-size: 1.3rem;
+    padding: 0.4rem 0.7rem;
+    border: 0;
+    outline: 0;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    opacity: 1;
+}
+
+.next-button:active {
+    transform: scale(90%);
+}
+
+#step-four {
+    width: 70%;
+    padding-inline: 2rem;
+}
+#step-four h1 {
+    margin-bottom: 1rem;
+}
+
+#step-four .summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-block: 0.3rem;
+}
+
+#step-four .summary svg {
+    width: 1.75rem;
+    height: 1;
+}
+
+
+#lets-start-button {
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+}  
+
+#work-summary svg path {
+    fill: var(--work);
+    stroke: var(--work);
+    stroke-width: 3rem;
+}
+
+#rest-summary svg path{
+    fill: var(--rest);
+    stroke: var(--rest);
+    stroke-width: 3rem;
+}
+
+#repeat-summary svg path{
+    fill: var(--repeat);
+    stroke: var(--repeat);
+    stroke-width: 3rem;
+}
+
+#duration-summary svg path {
+    fill: var(--duration);
+    stroke: var(--duration);
+    stroke-width: 3rem;
+}
+
+#progress-time {
+    position: relative;
+    width: 80dvw;
+    height: 80dvw;
+    border-radius: 50%;
+    background: 
+      radial-gradient(closest-side, white 85%, transparent 85% 0%),
+      conic-gradient(var(--work) 5%, var(--button-bg) 0);    
+  }
+
+  #timer {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  #time-counter {
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 7rem;
+    font-weight: bold;
+  }
+
+  .count-button {
+    margin-top: 2rem;
+    padding: 0.5rem 1.5rem;
+    font-size: 2.5rem;
+    border-radius: 0.5rem;
+    border: 0;
+    outline: 0;
+    color: var(--text-white);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    font-weight: bold;
+  }
+  .count-button:active {
+    transform: scale(90%);
+  }
+
+  #start-button {
+    background-color: var(--duration);
+  }
+
+  #pause-button {
+    background-color: var(--rest);
+  }
+
+  #finish-button {
+    background-color: var(--repeat);
+  }
+
+  #timer-info {
+    width: 70%;
+    margin-top: 2rem;
+  }
+
+  #timer-info p {
+    display: flex;
+    justify-content: space-between;
+    margin-block: 0.5rem;
+    font-size: 1.2rem;
+  }
